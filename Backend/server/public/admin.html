@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hillwoods Academy — Inbox</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, Segoe UI, sans-serif; margin:0; background:#f8f2e6; color:#14171d; }
+  header { background:#101c38; color:#fdfbf6; padding:20px 28px; }
+  header h1 { margin:0; font-size:18px; }
+  header p { margin:4px 0 0; font-size:12px; color:#e6c98899; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 28px; }
+  .keybar { display:flex; gap:10px; margin-bottom:24px; }
+  .keybar input { flex:1; padding:10px 14px; border:1px solid #cbd0d8; border-radius:8px; font-size:14px; }
+  .keybar button { padding:10px 18px; border:none; border-radius:8px; background:#c41e3a; color:white; font-weight:600; cursor:pointer; }
+  .tabs { display:flex; gap:8px; margin-bottom:18px; }
+  .tabs button { padding:8px 16px; border-radius:999px; border:1px solid #10203833; background:white; cursor:pointer; font-size:13px; }
+  .tabs button.active { background:#101c38; color:white; border-color:#101c38; }
+  table { width:100%; border-collapse:collapse; background:white; border-radius:12px; overflow:hidden; box-shadow: 0 1px 3px rgba(16,28,56,0.08); }
+  th, td { text-align:left; padding:12px 14px; font-size:13px; border-bottom:1px solid #10203812; vertical-align:top; }
+  th { background:#101c38; color:#e6c988; font-size:11px; text-transform:uppercase; letter-spacing:0.05em; }
+  tr:last-child td { border-bottom:none; }
+  .status { font-size:11px; padding:3px 8px; border-radius:999px; background:#f0e0b6; color:#8a6420; font-weight:600; }
+  .empty { text-align:center; padding:60px 20px; color:#65667866; }
+  .err { color:#a91d34; font-size:13px; margin-bottom:14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Hillwoods Academy — Inbox</h1>
+  <p>Admissions inquiries &amp; contact messages, newest first</p>
+</header>
+<div class="wrap">
+  <div class="keybar">
+    <input id="key" type="password" placeholder="Admin key (from server/.env ADMIN_KEY)" />
+    <button onclick="load()">View</button>
+  </div>
+  <div class="tabs">
+    <button id="tab-inquiries" class="active" onclick="switchTab('inquiries')">Admissions Inquiries</button>
+    <button id="tab-contact" onclick="switchTab('contact')">Contact Messages</button>
+  </div>
+  <div id="error" class="err"></div>
+  <div id="content"></div>
+</div>
+
+<script>
+  let current = 'inquiries';
+  const savedKey = localStorage.getItem('hw_admin_key');
+  if (savedKey) document.getElementById('key').value = savedKey;
+
+  function switchTab(tab) {
+    current = tab;
+    document.getElementById('tab-inquiries').classList.toggle('active', tab === 'inquiries');
+    document.getElementById('tab-contact').classList.toggle('active', tab === 'contact');
+    load();
+  }
+
+  async function load() {
+    const key = document.getElementById('key').value.trim();
+    const errorEl = document.getElementById('error');
+    const contentEl = document.getElementById('content');
+    errorEl.textContent = '';
+    if (!key) { errorEl.textContent = 'Enter the admin key first.'; return; }
+    localStorage.setItem('hw_admin_key', key);
+
+    const url = current === 'inquiries' ? '/api/inquiries' : '/api/contact';
+    try {
+      const res = await fetch(`${url}?key=${encodeURIComponent(key)}`);
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || `Request failed (${res.status})`);
+      }
+      const rows = await res.json();
+      render(rows);
+    } catch (err) {
+      errorEl.textContent = err.message;
+      contentEl.innerHTML = '';
+    }
+  }
+
+  function render(rows) {
+    const contentEl = document.getElementById('content');
+    if (!rows.length) {
+      contentEl.innerHTML = '<div class="empty">No submissions yet.</div>';
+      return;
+    }
+
+    const isInquiries = current === 'inquiries';
+    const headers = isInquiries
+      ? ['Received', 'Student', 'Parent', 'Grade', 'Phone', 'Email', 'Message', 'Status']
+      : ['Received', 'Name', 'Phone', 'Email', 'Message'];
+
+    const body = rows.map(r => {
+      const date = new Date(r.createdAt).toLocaleString();
+      if (isInquiries) {
+        return `<tr>
+          <td>${date}</td><td>${esc(r.studentName)}</td><td>${esc(r.parentName)}</td>
+          <td>${esc(r.grade)}</td><td>${esc(r.phone)}</td><td>${esc(r.email)}</td>
+          <td>${esc(r.message || '—')}</td><td><span class="status">${esc(r.status)}</span></td>
+        </tr>`;
+      }
+      return `<tr>
+        <td>${date}</td><td>${esc(r.name)}</td><td>${esc(r.phone || '—')}</td>
+        <td>${esc(r.email)}</td><td>${esc(r.message)}</td>
+      </tr>`;
+    }).join('');
+
+    contentEl.innerHTML = `<table><thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
+  }
+
+  function esc(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  if (savedKey) load();
+</script>
+</body>
+</html>

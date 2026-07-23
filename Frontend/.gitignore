@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+.env
+.env.local
+*.local
+
+# TanStack Router generates this file automatically on `npm run dev` / `npm run build`
+src/routeTree.gen.ts
+
+.DS_Store
+*.log
