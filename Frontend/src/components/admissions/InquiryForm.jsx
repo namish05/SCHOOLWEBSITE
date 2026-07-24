@@ -20,7 +20,7 @@ export function InquiryForm() {
     const payload = Object.fromEntries(formData.entries())
 
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+      const baseUrl = import.meta.env.VITE_API_URL || 'https://schoolwebsite-423l.onrender.com'
       const response = await fetch(baseUrl + '/api/inquiries', {
         method: 'POST',
         headers: {
