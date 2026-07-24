@@ -13,7 +13,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const PORT = process.env.PORT || 4000
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:3000' }))
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://hillwoodacademy.vercel.app',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+)
 app.use(express.json())
 
 // Simple static admin inbox — visit http://localhost:4000/admin.html
