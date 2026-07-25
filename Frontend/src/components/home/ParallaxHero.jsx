@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { Link } from '@tanstack/react-router'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, ShieldCheck } from 'lucide-react'
 import { site } from '../../data/content'
 import { buttonClass } from '../ui/buttonStyles'
 import { Laurel } from '../ui/Laurel'
@@ -40,6 +40,22 @@ export function ParallaxHero() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/75 to-navy-950/35" />
         <div className="absolute inset-0 bg-navy-950/20" />
+      </motion.div>
+
+      {/* Admin Panel Button — top-right corner */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1 }}
+        className="absolute top-5 right-5 z-20"
+      >
+        <Link
+          to="/admin"
+          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white/70 backdrop-blur-sm transition-all hover:bg-white/20 hover:text-white"
+        >
+          <ShieldCheck size={14} />
+          Admin Panel
+        </Link>
       </motion.div>
 
       <motion.div
