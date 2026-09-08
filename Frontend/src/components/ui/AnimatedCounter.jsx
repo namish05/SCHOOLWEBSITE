@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { useInView } from 'framer-motion'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-function easeOutExpo(t) {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
 }
 
 export function AnimatedCounter({
@@ -12,27 +13,37 @@ export function AnimatedCounter({
   className,
 }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [display, setDisplay] = useState(0)
 
   useEffect(() => {
-    if (!isInView) return
+    const el = ref.current
+    if (!el) return
 
-    let frame
-    const start = performance.now()
-
-    const tick = (now) => {
-      const elapsed = (now - start) / 1000
-      const progress = Math.min(elapsed / duration, 1)
-      setDisplay(Math.round(value * easeOutExpo(progress)))
-      if (progress < 1) {
-        frame = requestAnimationFrame(tick)
-      }
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      setDisplay(value)
+      return
     }
 
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [isInView, value, duration])
+    const obj = { count: 0 }
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: 'top 90%',
+      once: true,
+      onEnter: () => {
+        gsap.to(obj, {
+          count: value,
+          duration: duration,
+          ease: 'power2.out',
+          onUpdate: () => {
+            setDisplay(Math.round(obj.count))
+          },
+        })
+      },
+    })
+
+    return () => st.kill()
+  }, [value, duration])
 
   return (
     <span ref={ref} className={className}>
@@ -41,3 +52,4 @@ export function AnimatedCounter({
     </span>
   )
 }
+

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { Quote } from 'lucide-react'
 import { homeTestimonials } from '../../data/content'
 import { Reveal, StaggerGroup, StaggerItem } from '../ui/Reveal'
@@ -16,7 +17,11 @@ export function Testimonials() {
       <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-3">
         {homeTestimonials.map((testimonial) => (
           <StaggerItem key={testimonial.name}>
-            <div className="flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-navy-900/5">
+            <motion.div
+              whileHover={{ y: -8, scale: 1.01 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+              className="flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-8 shadow-sm transition-all duration-300 hover:border-gold-400/50 hover:shadow-xl hover:shadow-navy-900/5"
+            >
               <Quote className="text-gold-500" size={26} strokeWidth={1.5} />
               <p className="mt-5 flex-1 text-[15px] leading-relaxed text-ink-700">
                 "{testimonial.quote}"
@@ -29,10 +34,11 @@ export function Testimonials() {
                   {testimonial.role}
                 </p>
               </div>
-            </div>
+            </motion.div>
           </StaggerItem>
         ))}
       </StaggerGroup>
     </section>
   )
 }
+

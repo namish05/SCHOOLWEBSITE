@@ -1,20 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { nav, site } from '../../data/content'
 import { buttonClass } from '../ui/buttonStyles'
 import { cn } from '../../lib/utils'
 
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const progressBarRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (!progressBarRef.current) return
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        onUpdate: (self) => {
+          if (progressBarRef.current) {
+            gsap.set(progressBarRef.current, { scaleX: self.progress })
+          }
+        },
+      })
+    })
+    return () => ctx.revert()
   }, [])
 
   useEffect(() => {
@@ -33,6 +57,13 @@ export function Navbar() {
           : 'bg-navy-950/70 py-3',
       )}
     >
+      {/* GSAP Scroll Progress Line */}
+      <div
+        ref={progressBarRef}
+        className="pointer-events-none absolute bottom-0 left-0 h-[2.5px] w-full origin-left bg-gradient-to-r from-gold-500 via-crimson-500 to-gold-400 shadow-[0_0_8px_rgba(217,181,99,0.5)]"
+        style={{ transform: 'scaleX(0)' }}
+      />
+
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <img
