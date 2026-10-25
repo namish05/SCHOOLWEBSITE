@@ -634,6 +634,15 @@ export function AdminPage() {
               </div>
             </div>
           )}
+
+          <div className="mt-10 border-t border-navy-900/10 pt-6 text-center font-mono text-xs text-ink-500">
+            <span>Admin Portal &middot; Developed by </span>
+            <span className="font-semibold text-navy-950">Er. Namish Srivastava</span>
+            <span> &middot; </span>
+            <a href="mailto:snamish44@gmail.com" className="text-crimson-600 hover:underline">
+              snamish44@gmail.com
+            </a>
+          </div>
         </Reveal>
       </section>
     </div>

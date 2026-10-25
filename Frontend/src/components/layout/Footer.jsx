@@ -150,10 +150,26 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-4 border-t border-parchment-50/10 pt-8 text-xs text-parchment-50/50 sm:flex-row sm:justify-between">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-parchment-50/10 pt-8 text-xs text-parchment-50/60 lg:flex-row">
           <span>
             &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
           </span>
+
+          {/* Developer Credit */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-[11px] text-parchment-50/80 shadow-xs">
+            <span>Developed by</span>
+            <span className="font-semibold text-gold-300">{site.developer?.name || 'Er. Namish Srivastava'}</span>
+            <span className="text-parchment-50/40">&middot;</span>
+            <a
+              href={`mailto:${site.developer?.email || 'snamish44@gmail.com'}`}
+              className="inline-flex items-center gap-1 text-gold-300 underline decoration-gold-400/40 underline-offset-2 transition-colors hover:text-white hover:decoration-gold-300"
+              title="Contact Developer"
+            >
+              <Mail size={12} className="text-gold-400" />
+              <span>{site.developer?.email || 'snamish44@gmail.com'}</span>
+            </a>
+          </div>
+
           <span className="flex items-center gap-3 text-gold-400">
             <Laurel />
             <span className="font-mono uppercase tracking-[0.2em]">

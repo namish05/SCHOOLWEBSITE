@@ -29,6 +29,10 @@ export const site = {
     instagram: 'https://www.instagram.com/hillwoodsacademy/',
     whatsapp: 'https://wa.me/917703017100?text=Hello%20Hillwoods%20Academy,%20I%20would%20like%20to%20inquire%20about%20admissions.',
   },
+  developer: {
+    name: 'Er. Namish Srivastava',
+    email: 'snamish44@gmail.com',
+  },
 }
 
 export const nav = [
