@@ -3,6 +3,7 @@ import { site } from '../data/content'
 import { ParallaxHero } from '../components/home/ParallaxHero'
 import { StatsStrip } from '../components/home/StatsStrip'
 import { HighlightsRibbon } from '../components/home/HighlightsRibbon'
+import { NoticeBoard } from '../components/home/NoticeBoard'
 import { MissionTeaser } from '../components/home/MissionTeaser'
 import { ProgramsGrid } from '../components/home/ProgramsGrid'
 import { BranchesSection } from '../components/home/BranchesSection'
@@ -20,6 +21,7 @@ export function HomePage() {
       <div className="mt-20">
         <HighlightsRibbon />
       </div>
+      <NoticeBoard />
       <MissionTeaser />
       <ProgramsGrid />
       <BranchesSection />

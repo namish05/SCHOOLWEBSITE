@@ -25,9 +25,9 @@ export const site = {
   admissionsEmail: 'admissions@hillwoodsacademy.in',
   mapEmbedQuery: 'Hillwoods Academy, CC Road, Uma Nagar, Deoria, Uttar Pradesh 274001',
   socials: {
-    facebook: '#',
-    instagram: '#',
-    youtube: '#',
+    facebook: 'https://www.facebook.com/hillwoodsdeoria/',
+    instagram: 'https://www.instagram.com/hillwoodsacademy/',
+    whatsapp: 'https://wa.me/917703017100?text=Hello%20Hillwoods%20Academy,%20I%20would%20like%20to%20inquire%20about%20admissions.',
   },
 }
 

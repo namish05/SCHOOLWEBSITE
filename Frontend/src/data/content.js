@@ -25,20 +25,72 @@ export const site = {
   admissionsEmail: 'admissions@hillwoodsacademy.in',
   mapEmbedQuery: 'Hillwoods Academy, CC Road, Uma Nagar, Deoria, Uttar Pradesh 274001',
   socials: {
-    facebook: '#',
-    instagram: '#',
-    youtube: '#',
+    facebook: 'https://www.facebook.com/hillwoodsdeoria/',
+    instagram: 'https://www.instagram.com/hillwoodsacademy/',
+    whatsapp: 'https://wa.me/917703017100?text=Hello%20Hillwoods%20Academy,%20I%20would%20like%20to%20inquire%20about%20admissions.',
   },
 }
 
 export const nav = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
+  { label: 'Notices', to: '/#notices' },
   { label: 'Branches', to: '/#branches' },
   { label: 'Academics', to: '/academics' },
   { label: 'Admissions', to: '/admissions' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Contact', to: '/contact' },
+]
+
+export const initialNotices = [
+  {
+    id: 'notice-1',
+    title: 'Admissions Open for Academic Session 2025-26',
+    date: '2025-01-15',
+    category: 'Admissions',
+    badge: 'Important',
+    content:
+      'Registration and admission inquiries are now actively open for Classes Nursery to Class VIII across all 3 branches: C.C. Road (Uma Nagar), Saket Nagar, and M. S. Academy (Musaila Khurd). Parents can submit an online inquiry or visit campus during office hours (Mon–Sat 7:00 AM – 3:00 PM).',
+    link: '/admissions',
+    linkText: 'Apply for Admission',
+    isUrgent: true,
+  },
+  {
+    id: 'notice-2',
+    title: 'Annual Sports Meet (Udaan) Schedule Announced',
+    date: '2024-12-10',
+    category: 'Sports',
+    badge: 'Events',
+    content:
+      'The Annual Sports Meet "Udaan" is organized at the Sports Stadium, Deoria. Students from all grades will participate in athletic events, track & field races, march past, and award distribution ceremonies.',
+    link: '/gallery',
+    linkText: 'View Sports Gallery',
+    isUrgent: false,
+  },
+  {
+    id: 'notice-3',
+    title: 'Interactive Smart Classrooms & Modern Computer Lab Sessions',
+    date: '2024-11-20',
+    category: 'Academics',
+    badge: 'Facility',
+    content:
+      'Practical computer classes and smart audio-visual sessions are running regularly. Hands-on coding and digital literacy programs are being conducted for middle school students.',
+    link: '/academics',
+    linkText: 'Explore Academics',
+    isUrgent: false,
+  },
+  {
+    id: 'notice-4',
+    title: 'Upcoming Cultural Celebrations & Summer Camp Registration',
+    date: '2024-10-05',
+    category: 'Events',
+    badge: 'Celebrations',
+    content:
+      'Registrations for upcoming school cultural events and our creative Summer Camp (ice breakers, arts & crafts, dance, music, and team games) are now being accepted.',
+    link: '/#branches',
+    linkText: 'Branch Details',
+    isUrgent: false,
+  },
 ]
 
 export const currentYear = new Date().getFullYear()

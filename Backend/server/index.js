@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url'
 import { connectDB } from './db.js'
 import { inquiriesRouter } from './routes/inquiries.js'
 import { contactRouter } from './routes/contact.js'
+import { noticesRouter } from './routes/notices.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -46,6 +47,7 @@ app.get('/', (req, res) => res.send('Hillwoods Academy API is running! The main 
 app.get('/api/health', (req, res) => res.json({ ok: true }))
 app.use('/api/inquiries', inquiriesRouter)
 app.use('/api/contact', contactRouter)
+app.use('/api/notices', noticesRouter)
 
 connectDB()
   .then(() => {
