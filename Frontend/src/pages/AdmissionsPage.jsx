@@ -1,6 +1,6 @@
-import { CalendarDays, FileCheck2 } from 'lucide-react'
+import { CalendarDays, FileCheck2, ShieldCheck } from 'lucide-react'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
-import { admissionDates, admissionDocuments, site } from '../data/content'
+import { admissionDates, admissionDocuments, schoolInfoData, site } from '../data/content'
 import { PageHeader } from '../components/ui/PageHeader'
 import { SectionEyebrow } from '../components/ui/SectionEyebrow'
 import { Reveal } from '../components/ui/Reveal'
@@ -15,8 +15,42 @@ export function AdmissionsPage() {
       <PageHeader
         eyebrow="Join Hillwoods"
         title="Admissions"
-        description="Five simple steps between an inquiry and your child's first day at Hillwoods Academy."
+        description="A structured, fair, and transparent process between an inquiry and your child's first day at Hillwoods Academy."
       />
+
+      {/* Admission Philosophy & Guidance */}
+      <section className="mx-auto max-w-7xl px-5 pt-12 pb-6 lg:px-8">
+        <Reveal>
+          <div className="rounded-3xl border border-gold-400/30 bg-gradient-to-br from-parchment-50 via-white to-parchment-100/60 p-8 sm:p-10 shadow-sm">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-crimson-600 font-semibold">
+                  <ShieldCheck size={16} />
+                  Fair &amp; Transparent Admissions
+                </div>
+                <h3 className="mt-2 font-display text-2xl font-semibold text-navy-950 sm:text-3xl">
+                  Welcoming students of diverse backgrounds
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-ink-700">
+                  {schoolInfoData.admissions.description}
+                </p>
+                <p className="mt-2 text-sm text-ink-600">
+                  {schoolInfoData.admissions.guidance}
+                </p>
+              </div>
+              <div className="shrink-0 rounded-2xl bg-navy-950 p-6 text-parchment-50">
+                <span className="font-mono text-xs uppercase tracking-wider text-gold-300 block mb-2">
+                  Admissions Office &amp; Campus
+                </span>
+                <p className="text-sm font-semibold">{site.fullAddress}</p>
+                <p className="mt-2 text-xs text-parchment-50/70">
+                  Campus Hours: Mon &ndash; Sat 7:00 AM &ndash; 3:00 PM (Closed Sunday)
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
 
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <SectionEyebrow>How It Works</SectionEyebrow>

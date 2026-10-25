@@ -91,9 +91,9 @@ export function ParallaxHero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-6 max-w-xl text-lg leading-relaxed text-parchment-50/80"
         >
-          {site.name} is a CBSE school in {site.city} where academic rigour meets real
-          character-building — from a child's first day in Nursery to their last in Grade
-          XII.
+          {site.name} is a premier secondary school in {site.city} educating students
+          from Nursery to Class VIII — featuring a modern computer lab, daily games period,
+          annual sports meet, and 3 prominent branches.
         </motion.p>
 
         <motion.div

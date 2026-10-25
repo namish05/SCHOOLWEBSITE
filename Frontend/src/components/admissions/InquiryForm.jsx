@@ -97,7 +97,7 @@ export function InquiryForm() {
           </label>
           <select required name="grade" defaultValue="" className={inputClass}>
             <option value="" disabled>
-              Select a grade
+              Select a grade (Nursery – 8th)
             </option>
             {gradeOptions.map((grade) => (
               <option key={grade} value={grade}>
@@ -107,6 +107,16 @@ export function InquiryForm() {
           </select>
         </div>
         <div>
+          <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-500">
+            Preferred Campus Branch
+          </label>
+          <select name="branch" defaultValue="Branch 1: C.C. Road (Uma Nagar)" className={inputClass}>
+            <option value="Branch 1: C.C. Road (Uma Nagar)">Branch 1: Hillwoods Academy (C.C. Road)</option>
+            <option value="Branch 2: Saket Nagar">Branch 2: Hillwoods Academy (Saket Nagar)</option>
+            <option value="Branch 3: M. S. Academy (Musaila Khurd)">Branch 3: M. S. Academy (Musaila Khurd)</option>
+          </select>
+        </div>
+        <div className="sm:col-span-2">
           <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-500">
             Phone Number
           </label>

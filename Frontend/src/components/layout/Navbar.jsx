@@ -82,17 +82,27 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
-          {nav.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              activeOptions={{ exact: item.to === '/' }}
-              activeProps={{ className: 'text-gold-300' }}
-              className="link-underline font-mono text-xs font-medium uppercase tracking-[0.15em] text-parchment-50/85 transition-colors hover:text-gold-300"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) =>
+            item.to.includes('#') ? (
+              <a
+                key={item.label}
+                href={item.to}
+                className="link-underline font-mono text-xs font-medium uppercase tracking-[0.15em] text-parchment-50/85 transition-colors hover:text-gold-300"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.to}
+                to={item.to}
+                activeOptions={{ exact: item.to === '/' }}
+                activeProps={{ className: 'text-gold-300' }}
+                className="link-underline font-mono text-xs font-medium uppercase tracking-[0.15em] text-parchment-50/85 transition-colors hover:text-gold-300"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
 
         <div className="hidden lg:block">
@@ -122,18 +132,29 @@ export function Navbar() {
             className="overflow-hidden border-t border-parchment-50/10 lg:hidden"
           >
             <nav className="flex flex-col gap-1 px-5 py-4">
-              {nav.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  activeOptions={{ exact: item.to === '/' }}
-                  activeProps={{ className: 'text-gold-300' }}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 font-mono text-sm uppercase tracking-[0.15em] text-parchment-50/85 transition-colors hover:bg-parchment-50/5 hover:text-gold-300"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {nav.map((item) =>
+                item.to.includes('#') ? (
+                  <a
+                    key={item.label}
+                    href={item.to}
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg px-3 py-3 font-mono text-sm uppercase tracking-[0.15em] text-parchment-50/85 transition-colors hover:bg-parchment-50/5 hover:text-gold-300"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    activeOptions={{ exact: item.to === '/' }}
+                    activeProps={{ className: 'text-gold-300' }}
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg px-3 py-3 font-mono text-sm uppercase tracking-[0.15em] text-parchment-50/85 transition-colors hover:bg-parchment-50/5 hover:text-gold-300"
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
               <Link
                 to="/admissions"
                 onClick={() => setOpen(false)}

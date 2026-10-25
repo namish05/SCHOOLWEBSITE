@@ -5,7 +5,9 @@ import { StatsStrip } from '../components/home/StatsStrip'
 import { HighlightsRibbon } from '../components/home/HighlightsRibbon'
 import { MissionTeaser } from '../components/home/MissionTeaser'
 import { ProgramsGrid } from '../components/home/ProgramsGrid'
+import { BranchesSection } from '../components/home/BranchesSection'
 import { Testimonials } from '../components/home/Testimonials'
+import { SchoolInfoSection } from '../components/home/SchoolInfoSection'
 import { CtaBand } from '../components/ui/CtaBand'
 
 export function HomePage() {
@@ -20,6 +22,8 @@ export function HomePage() {
       </div>
       <MissionTeaser />
       <ProgramsGrid />
+      <BranchesSection />
+      <SchoolInfoSection />
       <Testimonials />
       <CtaBand
         eyebrow="Admissions Open"

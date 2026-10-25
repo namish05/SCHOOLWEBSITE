@@ -14,12 +14,16 @@ export const site = {
   founded: 2010,
   city: 'Deoria',
   state: 'Uttar Pradesh',
-  fullAddress: 'Civil Lines Road, Deoria, Uttar Pradesh 274001',
-  phone: '+91 98000 00000',
-  phoneAlt: '+91 55350 00000',
-  email: '[email protected]',
-  admissionsEmail: '[email protected]',
-  mapEmbedQuery: 'Deoria, Uttar Pradesh, India',
+  locality: 'C.C. Road (Uma Nagar)',
+  fullAddress: 'C.C. Road, Uma Nagar, Deoria, Uttar Pradesh 274001',
+  rating: '4.6',
+  reviewsCount: '5+',
+  phone: '+91 77030 17100',
+  phoneAlt: '+91 77030 17200',
+  phoneExtra: '+91 77030 17300',
+  email: 'info@hillwoodsacademy.in',
+  admissionsEmail: 'admissions@hillwoodsacademy.in',
+  mapEmbedQuery: 'Hillwoods Academy, CC Road, Uma Nagar, Deoria, Uttar Pradesh 274001',
   socials: {
     facebook: '#',
     instagram: '#',
@@ -324,8 +328,7 @@ export const contactDepartments = [
 ]
 
 export const officeHours = [
-  { day: 'Monday – Friday', hours: '8:00 AM – 4:00 PM' },
-  { day: 'Saturday', hours: '9:00 AM – 1:00 PM' },
+  { day: 'Monday – Saturday', hours: '7:00 AM – 3:00 PM' },
   { day: 'Sunday', hours: 'Closed' },
 ]
 

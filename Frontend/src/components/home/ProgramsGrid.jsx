@@ -23,7 +23,7 @@ if (typeof window !== 'undefined') {
 
 const icons = { Sprout, BookOpen, FlaskConical, GraduationCap }
 
-// Enriched stage metadata for Hillwoods Academy educational journey
+// Enriched stage metadata for Hillwoods Academy educational journey (Nursery to 8th)
 const stageDetails = [
   {
     step: '01',
@@ -35,27 +35,27 @@ const stageDetails = [
   },
   {
     step: '02',
-    ageRange: 'Ages 6 – 10',
+    ageRange: 'Ages 6 – 8',
     accentColor: 'from-crimson-500/20 via-rose-500/10 to-transparent',
     borderColor: 'group-hover:border-crimson-400',
     badgeBg: 'bg-crimson-50 text-crimson-700 border-crimson-200',
-    highlights: ['Foundational STEM', 'Bilingual Literacy', 'Sports & Fine Arts'],
+    highlights: ['Foundational Literacy', 'Mathematics & EVS', 'Daily Games & Art'],
   },
   {
     step: '03',
-    ageRange: 'Ages 11 – 13',
+    ageRange: 'Ages 9 – 10',
     accentColor: 'from-blue-600/20 via-indigo-500/10 to-transparent',
     borderColor: 'group-hover:border-blue-400',
     badgeBg: 'bg-blue-50 text-blue-700 border-blue-200',
-    highlights: ['Coding & Robotics', 'Applied Science Labs', 'House Competitions'],
+    highlights: ['Computer Lab Intro', 'Science Discovery', 'Public Speaking & Games'],
   },
   {
     step: '04',
-    ageRange: 'Ages 14 – 18',
+    ageRange: 'Ages 11 – 14',
     accentColor: 'from-emerald-600/20 via-teal-500/10 to-transparent',
     borderColor: 'group-hover:border-emerald-400',
     badgeBg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    highlights: ['Science, Commerce & Arts', 'Board Mentorship', 'Career Guidance'],
+    highlights: ['Specialist Educators', 'Computer Lab & Coding', 'Annual Sports Meet'],
   },
 ]
 
@@ -172,7 +172,7 @@ export function ProgramsGrid() {
             <SectionEyebrow>The Academic Journey</SectionEyebrow>
             <span className="inline-flex items-center gap-1 rounded-full border border-gold-400/30 bg-gold-100/50 px-2.5 py-0.5 font-mono text-[11px] font-medium tracking-wider text-gold-700">
               <Sparkles size={12} className="text-gold-500" />
-              NURSERY TO GRADE XII
+              NURSERY TO CLASS VIII
             </span>
           </div>
 

@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import {
+  Clock,
   Globe,
   Mail,
   MapPin,
@@ -26,8 +27,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-parchment-50/60">
-              A CBSE school in {site.city}, {site.state}, educating students from Nursery
-              through Grade XII since {site.founded}.
+              A premier secondary school in {site.city}, {site.state}, educating students from Nursery
+              to Class VIII across 3 prominent branches since {site.founded}.
             </p>
             <div className="mt-6 flex items-center gap-4">
               <a
@@ -60,13 +61,22 @@ export function Footer() {
             </h3>
             <ul className="mt-5 space-y-3">
               {nav.map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    className="link-underline text-sm text-parchment-50/70 transition-colors hover:text-parchment-50"
-                  >
-                    {item.label}
-                  </Link>
+                <li key={item.label}>
+                  {item.to.includes('#') ? (
+                    <a
+                      href={item.to}
+                      className="link-underline text-sm text-parchment-50/70 transition-colors hover:text-parchment-50"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.to}
+                      className="link-underline text-sm text-parchment-50/70 transition-colors hover:text-parchment-50"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -74,24 +84,29 @@ export function Footer() {
 
           <div>
             <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-gold-300">
-              Contact
+              Our 3 Branches
             </h3>
-            <ul className="mt-5 space-y-4 text-sm text-parchment-50/70">
-              <li className="flex gap-3">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-gold-400" />
-                <span>{site.fullAddress}</span>
+            <ul className="mt-5 space-y-4 text-xs text-parchment-50/70">
+              <li className="space-y-1 border-b border-white/5 pb-2">
+                <span className="font-semibold text-white">Branch 1 (Main): C.C. Road (Uma Nagar)</span>
+                <div className="flex items-center gap-2 text-gold-400">
+                  <Phone size={13} />
+                  <span>+91 77030 17100 / 17200</span>
+                </div>
               </li>
-              <li className="flex gap-3">
-                <Phone size={18} className="mt-0.5 shrink-0 text-gold-400" />
-                <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="hover:text-parchment-50">
-                  {site.phone}
-                </a>
+              <li className="space-y-1 border-b border-white/5 pb-2">
+                <span className="font-semibold text-white">Branch 2: Saket Nagar</span>
+                <div className="flex items-center gap-2 text-gold-400">
+                  <Phone size={13} />
+                  <span>+91 77030 17200 / 8601007103</span>
+                </div>
               </li>
-              <li className="flex gap-3">
-                <Mail size={18} className="mt-0.5 shrink-0 text-gold-400" />
-                <a href={`mailto:${site.email}`} className="hover:text-parchment-50">
-                  {site.email}
-                </a>
+              <li className="space-y-1">
+                <span className="font-semibold text-white">Branch 3: M. S. Academy, Musaila Khurd</span>
+                <div className="flex items-center gap-2 text-gold-400">
+                  <Phone size={13} />
+                  <span>+91 94530 17200</span>
+                </div>
               </li>
             </ul>
           </div>

@@ -3,7 +3,7 @@ import { Reveal } from '../ui/Reveal'
 
 export function StagesRail() {
   return (
-    <div className="grid gap-5 lg:grid-cols-5">
+    <div className="grid gap-6 md:grid-cols-3">
       {academicStages.map((stage, i) => (
         <Reveal key={stage.stage} delay={i * 0.06}>
           <div className="h-full rounded-2xl border border-navy-900/8 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold-400/50 hover:shadow-lg hover:shadow-navy-900/5">
